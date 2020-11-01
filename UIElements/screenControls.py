@@ -1,6 +1,7 @@
 from kivy.uix.floatlayout                      import   FloatLayout
 from kivy.uix.popup                            import   Popup
 from UIElements.otherFeatures                  import   OtherFeatures
+from UIElements.powerFeatures                  import   PowerFeatures
 from DataStructures.makesmithInitFuncs         import   MakesmithInitFuncs
 from UIElements.buttonTemplate                 import   ButtonTemplate
 from kivy.app                                  import   App
@@ -22,6 +23,8 @@ class ScreenControls(FloatLayout, MakesmithInitFuncs):
         self.settingsBtn.textColor = self.data.fontColor
         self.backgroundBtn.btnBackground = self.data.iconPath + 'Generic.png'
         self.backgroundBtn.textColor = self.data.fontColor
+        self.powerBtn.btnBackground = self.data.iconPath + 'Generic.png'
+        self.powerBtn.textColor = self.data.fontColor
     
     def openSettings(self):
         '''
@@ -36,6 +39,22 @@ class ScreenControls(FloatLayout, MakesmithInitFuncs):
         #open the settings panel
         App.get_running_app().open_settings()
     
+    def show_power(self):
+        '''
+        
+        Open A Pop-up To Allow Power Actions
+        
+        Creates a new pop-up allows the user to do things like shut down the system.
+        
+        '''
+        print "YAY"
+        content = PowerFeatures()
+        content.setUpData(self.data)
+        content.close = self.close_actions
+        self._popup = Popup(title="Power", content=content,
+                            size_hint=(0.9, 0.9))
+        self._popup.open() 
+    
     def show_actions(self):
         '''
         
@@ -44,6 +63,7 @@ class ScreenControls(FloatLayout, MakesmithInitFuncs):
         Creates a new pop-up allows the user to do things like open a file.
         
         '''
+        print "YAY"
         content = OtherFeatures()
         content.setUpData(self.data)
         content.close = self.close_actions
@@ -67,3 +87,4 @@ class ScreenControls(FloatLayout, MakesmithInitFuncs):
         self._popup = Popup(title="Background Picture", content=content,
                             size_hint=(0.5, 0.5))
         self._popup.open()
+
