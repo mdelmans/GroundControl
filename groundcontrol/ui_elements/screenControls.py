@@ -1,6 +1,7 @@
 from kivy.uix.floatlayout                      import   FloatLayout
 from kivy.uix.popup                            import   Popup
 from groundcontrol.ui_elements.otherFeatures                  import   OtherFeatures
+from groundcontrol.ui_elements.powerFeatures                  import   PowerFeatures
 from groundcontrol.data_structures.makesmithInitFuncs         import   MakesmithInitFuncs
 from kivy.app                                  import   App
 from groundcontrol.ui_elements.backgroundMenu                 import   BackgroundMenu
@@ -21,7 +22,9 @@ class ScreenControls(FloatLayout, MakesmithInitFuncs):
         self.settingsBtn.textColor = self.data.fontColor
         self.backgroundBtn.btnBackground = self.data.iconPath + 'Generic.png'
         self.backgroundBtn.textColor = self.data.fontColor
-    
+        self.powerBtn.btnBackground = self.data.iconPath + 'Generic.png'
+        self.powerBtn.textColor = self.data.fontColor
+
     def openSettings(self):
         '''
         
@@ -50,6 +53,21 @@ class ScreenControls(FloatLayout, MakesmithInitFuncs):
                             size_hint=(0.9, 0.9))
         self._popup.open()
     
+    def show_power(self):
+        '''
+        
+        Open A Pop-up To Allow Power Actions
+        
+        Creates a new pop-up allows the user to do things like shut down the system.
+        
+        '''
+        content = PowerFeatures()
+        content.setUpData(self.data)
+        content.close = self.close_actions
+        self._popup = Popup(title="Power", content=content,
+                            size_hint=(0.2, 0.2))
+        self._popup.open()
+
     def close_actions(self):
         '''
         Close pop-up

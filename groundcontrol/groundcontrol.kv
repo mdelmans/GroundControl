@@ -29,6 +29,7 @@
     actionsBtn:actionsBtn
     settingsBtn:settingsBtn
     backgroundBtn:backgroundBtn
+    powerBtn:powerBtn
 
     BoxLayout:
         orientation: 'horizontal'
@@ -36,6 +37,10 @@
         size_hint: (.4,None)
         height: dp(60)
 
+        ButtonTemplate:
+            text: "Power"
+            funcToCallOnRelease: root.show_power
+            id:powerBtn
         ButtonTemplate:
             text: "Actions"
             funcToCallOnRelease: root.show_actions
@@ -425,6 +430,13 @@
                 text: "Close"
                 size_hint_y: .15
                 on_release: root.close()
+
+<PowerFeatures>
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: "PowerOff"
+            on_release: root.power_off()
 
 <SoftwareSettings>:
 
