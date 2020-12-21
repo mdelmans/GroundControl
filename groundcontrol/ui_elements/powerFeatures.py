@@ -8,5 +8,5 @@ class PowerFeatures(Screen, MakesmithInitFuncs):
         self.data = data
 
     def power_off(self):
-    	print("Bye")
+        print("Bye")
         call("sudo shutdown -h now", shell=True)
